@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>O desenho é kiki?</title>
+<title>Sim nao</title>
 <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.19.0/dist/ort.min.js"></script>
 <style>
   :root {
@@ -209,7 +209,7 @@
 <body>
 
 <header>
-  <h1>O desenho é <span class="k">kiki</span>?</h1>
+  <h1>O desenho é kiki?</h1>
 </header>
 
 <div class="layout">
@@ -996,8 +996,8 @@ function renderFeatureLive(results) {
     if (k) { totK++; liveK += on; } else { totB++; liveB += on; }
   }
   document.getElementById("featLive").innerHTML =
-    `No seu desenho agora: <b style="color:var(--kiki)">${liveK}/${totK}</b> canais de kiki
-     e <b style="color:var(--bouba)">${liveB}/${totB}</b> de bouba estão disparando.`;
+    `<b style="color:var(--kiki)">${liveK}/${totK}</b> canais de sim
+     e <b style="color:var(--bouba)">${liveB}/${totB}</b> de nao disparando`;
 }
 
 // ---------- panel 3: evidence map ----------
@@ -1079,8 +1079,7 @@ function renderEvidence(results, rawLogit) {
   const sign = (v) => `<span class="${v >= 0 ? "p" : "n"}">${v >= 0 ? "+" : ""}${v.toFixed(3)}</span>`;
   document.getElementById("evSum").innerHTML =
     `soma do mapa ${sign(total)} &nbsp;+&nbsp; viés ${sign(b)} &nbsp;=&nbsp;
-     <b>logit ${sign(total + b)}</b>
-     <span style="color:var(--dim)">&nbsp; (a rede diz ${rawLogit.toFixed(3)})</span>`;
+     <b>logit ${sign(total + b)}</b>`;
 }
 
 // ---------- which shape the panels are showing ----------
@@ -1227,11 +1226,11 @@ function drawLatent() {
   g.fillStyle = "#97a1b3";
   g.font = "500 27px system-ui, sans-serif";
   g.textAlign = "center";
-  g.fillText("eixo da decisão  →  mais kiki", W / 2, H - 18);
+  g.fillText("componente 1 do espaço latente (logit de saída)", W / 2, H - 18);
   g.fillText("fronteira", bx, 40);
   g.save();
   g.translate(24, H / 2); g.rotate(-Math.PI / 2);
-  g.fillText("variação que a rede ignora", 0, 0);
+  g.fillText("componente 2 do espaço latente ", 0, 0);
   g.restore();
 }
 
@@ -1256,7 +1255,7 @@ function clearVis() {
   document.getElementById("focus").hidden = true;
   for (const r of featRows) r.el.classList.remove("live");
   document.getElementById("featLive").textContent =
-    "Desenhe algo: os canais que o seu desenho está ativando ficam destacados.";
+    "Não há desenho";
   for (const id of ["evInput", "evCam"]) {
     const cv = document.getElementById(id);
     cv.getContext("2d").clearRect(0, 0, cv.width, cv.height);
